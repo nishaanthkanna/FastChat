@@ -87,6 +87,14 @@ OPENAI_MODEL_LIST = (
     "gpt-4o-2024-05-13",
 )
 
+COHERE_MODEL_LIST = (
+    "command",
+    "command-light",
+    "command-nightly",
+    "command-nightly-light",
+    "aya23",
+)
+
 
 class BaseModelAdapter:
     """The base and the default model adapter."""
