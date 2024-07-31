@@ -1235,6 +1235,18 @@ register_conv_template(
 # reference: https://github.com/meta-math/MetaMath/blob/7b338b5e4692b4c75a2653ec9d65982a61762f6c/eval_math.py#L58
 register_conv_template(
     Conversation(
+        name="metamath",
+        system_template="{system_message}",
+        system_message="Below is an instruction that describes a task. Write a response that appropriately completes the request.",
+        roles=("### Instruction", "### Response"),
+        sep_style=SeparatorStyle.METAMATH,
+        sep="\n\n",
+        sep2="Let's think step by step.",
+    )
+)
+
+register_conv_template(
+    Conversation(
         name="cohere",
         roles=("User", "Chatbot"),
         system_template="System: {system_message}",
