@@ -2429,10 +2429,12 @@ class CohereAdapter(BaseModelAdapter):
         return model_path in ["aya23"]
 
     def load_model(self, model_path: str, from_pretrained_kwargs: dict):
-        raise NotImplementedError()
+        model, tokenizer = super().load_model(model_path, from_pretrained_kwargs)
+        
+        return model, tokenizer
 
     def get_default_conv_template(self, model_path: str) -> Conversation:
-        return get_conv_template("api_based_default")
+        return get_conv_template("cohere")
 
 
 class DBRXAdapter(BaseModelAdapter):
