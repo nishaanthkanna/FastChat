@@ -2426,7 +2426,7 @@ class CohereAdapter(BaseModelAdapter):
     """The model adapter for Cohere"""
 
     def match(self, model_path: str):
-        return model_path in ["command-r"]
+        return model_path in ["aya23"]
 
     def load_model(self, model_path: str, from_pretrained_kwargs: dict):
         raise NotImplementedError()
