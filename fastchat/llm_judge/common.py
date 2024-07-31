@@ -13,11 +13,13 @@ from typing import Optional
 
 import openai
 import anthropic
+import cohere
 
 from fastchat.model.model_adapter import (
     get_conversation_template,
     ANTHROPIC_MODEL_LIST,
     OPENAI_MODEL_LIST,
+    COHERE_MODEL_LIST,
 )
 
 # API setting constants
@@ -276,6 +278,8 @@ def run_judge_pair(question, answer_a, answer_b, judge, ref_answer, multi_turn=F
         judgment = chat_completion_anthropic(
             model, conv, temperature=0, max_tokens=1024
         )
+    elif model in COHERE_MODEL_LIST:
+        judgment = chat_completion_cohere(model, conv, temperature=0, max_tokens=1024)
     else:
         raise ValueError(f"Invalid judge model name: {model}")
 
