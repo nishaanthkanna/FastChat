@@ -1540,7 +1540,7 @@ register_conv_template(
 register_conv_template(
     Conversation(
         name="llama-2",
-        system_template="<s>[INST] <<SYS>>\n{system_message}\n<</SYS>>\n\n",
+        system_template="<s>---[INST] <<SYS>>\n{system_message}\n<</SYS>>\n\n",
         roles=("[INST]", "[/INST]"),
         sep_style=SeparatorStyle.LLAMA2,
         sep=" ",
