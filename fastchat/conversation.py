@@ -35,6 +35,7 @@ class SeparatorStyle(IntEnum):
     CHATGLM3 = auto()
     DEEPSEEK_CHAT = auto()
     METAMATH = auto()
+    COHERE = auto()
     YUAN2 = auto()
     GEMMA = auto()
     CLLM = auto()
@@ -279,6 +280,15 @@ class Conversation:
                 else:
                     ret += role + ":"
             return ret
+        elif self.sep_style == SeparatorStyle.COHERE:
+            ret = ""
+            if self.system_message:
+                ret += system_prompt + self.sep
+            for role, message in self.messages:
+                if message:
+                    ret += role + message + self.sep
+                else:
+                    ret += role 
         elif self.sep_style == SeparatorStyle.YUAN2:
             seps = [self.sep, self.sep2]
             ret = ""
@@ -1560,6 +1570,18 @@ register_conv_template(
         sep="",
         stop_str="<|eot_id|>",
         stop_token_ids=[128001, 128009],
+    )
+)
+
+register_conv_template(
+    Conversation(
+        name="cohere",
+        system_template="<|START_OF_TURN_TOKEN|><|SYSTEM_TOKEN|>{system_message}<|END_OF_TURN_TOKEN|>\n\n<|eot_id|>",
+        roles=("user", "assistant"),
+        sep_style=SeparatorStyle.COHERE,
+        sep="",
+        stop_str="<|END_OF_TURN_TOKEN|>",
+        stop_token_ids=[255001],
     )
 )
 
