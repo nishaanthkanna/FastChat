@@ -289,6 +289,7 @@ class Conversation:
                     ret += role + message + self.sep
                 else:
                     ret += role 
+            return ret
         elif self.sep_style == SeparatorStyle.YUAN2:
             seps = [self.sep, self.sep2]
             ret = ""
