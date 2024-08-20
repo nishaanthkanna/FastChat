@@ -286,9 +286,9 @@ class Conversation:
                 ret += system_prompt + self.sep
             for role, message in self.messages:
                 if message:
-                    ret += role + message + self.sep
+                    ret += "<|START_OF_TURN_TOKEN|>" + role + message + "<|END_OF_TURN_TOKEN|>"
                 else:
-                    ret += role 
+                    ret += "<|START_OF_TURN_TOKEN|>" + role + "<|END_OF_TURN_TOKEN|>" 
             return ret
         elif self.sep_style == SeparatorStyle.YUAN2:
             seps = [self.sep, self.sep2]
@@ -1577,8 +1577,8 @@ register_conv_template(
 register_conv_template(
     Conversation(
         name="cohere",
-        system_template="<|START_OF_TURN_TOKEN|><|SYSTEM_TOKEN|>{system_message}<|END_OF_TURN_TOKEN|>\n\n<|eot_id|>",
-        roles=("user", "assistant"),
+        system_template="<|START_OF_TURN_TOKEN|><|SYSTEM_TOKEN|>{system_message}<|END_OF_TURN_TOKEN|>",
+        roles=("<|USER_TOKEN|>", "<|CHATBOT_TOKEN|>"),
         sep_style=SeparatorStyle.COHERE,
         sep="",
         stop_str="<|END_OF_TURN_TOKEN|>",
