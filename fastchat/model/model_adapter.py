@@ -2413,13 +2413,13 @@ class CohereAdapter(BaseModelAdapter):
     """The model adapter for Cohere"""
 
     def match(self, model_path: str):
-        return model_path in ["command-r"]
+        return model_path in ["cohere"]
 
     def load_model(self, model_path: str, from_pretrained_kwargs: dict):
         raise NotImplementedError()
 
     def get_default_conv_template(self, model_path: str) -> Conversation:
-        return get_conv_template("api_based_default")
+        return get_conv_template("cohere")
 
 
 class DBRXAdapter(BaseModelAdapter):
